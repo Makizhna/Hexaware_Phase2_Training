@@ -1,0 +1,131 @@
+
+
+Problem Solving Techniques
+
+1) Heuristic approach
+           Thumb rule-based approach that finds a good enough solution quickly but may not always be optimal.
+           An eg of this approach is : Linear search
+
+        public class LinearSearch {
+            public static int linearSearch(int[] arr, int key) {
+                  for (int i = 0; i < arr.length; i++) {
+                      if (arr[i] == key) return i;
+                  }
+                 return -1;
+           }
+
+       public static void main(String[] args) {
+        int[] arr = {10, 20, 30, 40, 50};
+        int key = 30;
+        int result = linearSearch(arr, key);
+        System.out.println("Linear Search: Element " + key + " found at index " + result);
+    }
+
+
+2) Brute Force approach
+       A straightforward approach that tries all possible solutions until the correct one is found.
+       An eg for this approach is: linear search
+
+       public class LinearSearch {
+            public static int linearSearch(int[] arr, int key) {
+                  for (int i = 0; i < arr.length; i++) {
+                      if (arr[i] == key) return i;
+                  }
+                 return -1;
+           }
+
+       public static void main(String[] args) {
+        int[] arr = {10, 20, 30, 40, 50};
+        int key = 30;
+        int result = linearSearch(arr, key);
+        System.out.println("Linear Search: Element " + key + " found at index " + result);
+    }
+}
+
+
+3) Greedy approach
+        The greedy approach solves problems by making the locally optimal choice at each step, aiming for a globally optimal solution.
+
+        Amount given is Rs.18 Find the minimum number of coins needed to make the change using denominations{1,5,10}
+
+       public class CoinChange {
+           public static void coinChange(int[] coins, int amount) {
+                Arrays.sort(coins);
+                int count = 0;
+                System.out.print("Coins used: ");
+                for (int i = coins.length - 1; i >= 0; i--) {
+                    while (amount >= coins[i]) {
+                         amount -= coins[i];
+                         System.out.print(coins[i] + " ");
+                         count++;
+                    }
+               }
+               System.out.println("\nTotal coins used: " + count);
+          }
+
+    public static void main(String[] args) {
+        int[] coins = {1, 5, 10, 25, 50};
+        int amount = 93;
+        System.out.println("Coin Change for amount " + amount + ":");
+        coinChange(coins, amount);
+    }
+}
+
+
+4) Divide and conquer
+          Divide and Conquer is a problem-solving technique where a problem is broken into smaller subproblems, solved independently, and then combined to get the final solution.
+          An eg for this approach is: Quick sort
+
+    public class QuickSort {
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    private static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high], i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                int temp = arr[++i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+        return i + 1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {10, 7, 8, 9, 1, 5};
+        quickSort(arr, 0, arr.length - 1);
+        System.out.println("Sorted Array (Quick Sort): " + Arrays.toString(arr));
+    }
+}
+
+5)Dynamic programming technique
+          Dynamic programming is an optimization technique that solves overlapping subproblems by storing and reusing their solutions to improve efficiency.
+          An eg for this approach is: Fibonacci sequence
+
+public class Fibonacci {
+    public static int fibonacci(int n, int[] num) {
+        if (n <= 1) return n;
+        if (num[n] != 0) return num[n];
+        num[n] = fibonacci(n - 1, num) + fibonacci(n - 2, num);
+        return num[n];
+    }
+
+    public static void main(String[] args) {
+        int n = 10;
+        int[] num = new int[n + 1];
+        System.out.println("Fibonacci of " + n + " is: " + fibonacci(n, num));
+    }
+}
+
+
+
+
